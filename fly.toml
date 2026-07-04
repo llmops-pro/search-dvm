@@ -1,0 +1,19 @@
+# search-dvm worker. No [http_service] — it's a Nostr relay subscriber, not a
+# server. One always-on machine; Fly restarts it on crash.
+app = "llmops-search-dvm"
+primary_region = "ams"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  DVM_RELAYS = "wss://relay.damus.io,wss://nos.lol,wss://relay.primal.net,wss://relay.nostr.band"
+  SEARCH_RELAYS = "wss://relay.nostr.band,wss://relay.noswhere.com,wss://search.nos.today"
+  PRICE_SATS = "50"
+  INVOICE_TTL_SECONDS = "600"
+  MAX_RESULTS = "10"
+  AUDIT_LOG_PATH = "/dev/stderr"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"
