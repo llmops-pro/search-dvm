@@ -10,6 +10,7 @@ export type AuditEvent =
   | "settled"
   | "result_published"
   | "payment_timeout"
+  | "relay_resubscribe"
   | "error";
 
 export class AuditLog {

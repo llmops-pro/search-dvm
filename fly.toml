@@ -17,3 +17,8 @@ primary_region = "ams"
 [[vm]]
   size = "shared-cpu-1x"
   memory = "256mb"
+
+# Restart even after a clean exit (exit 0). Belt and braces with the
+# reconnect supervisor in src/supervisor.ts; see the 2026-06-15 outage.
+[[restart]]
+  policy = "always"

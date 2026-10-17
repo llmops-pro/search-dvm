@@ -2,7 +2,7 @@
   "name": "search-dvm",
   "version": "0.1.0",
   "private": true,
-  "description": "NOSTR Data Vending Machine (NIP-90 kind 5302, Nostr Content Search) — pay-per-search in sats, settlement verified on our own node via NWC. Part of the LLMOps.Pro agent-payments kit.",
+  "description": "NOSTR Data Vending Machine (NIP-90 kind 5302, Nostr Content Search) \u2014 pay-per-search in sats, settlement verified on our own node via NWC. Part of the LLMOps.Pro agent-payments kit.",
   "type": "module",
   "bin": {
     "search-dvm": "dist/index.js"
@@ -17,13 +17,15 @@
   "dependencies": {
     "@getalby/sdk": "^5.0.0",
     "nostr-tools": "^2.10.0",
-    "zod": "^3.23.0"
+    "zod": "^3.23.0",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
     "tsup": "^8.0.0",
     "tsx": "^4.0.0",
-    "typescript": "^5.5.0"
+    "typescript": "^5.5.0",
+    "@types/ws": "^8.5.12"
   },
   "license": "MIT",
   "repository": {
