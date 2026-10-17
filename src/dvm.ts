@@ -73,6 +73,16 @@ export async function handleJob(d: Deps, job: Event): Promise<void> {
   if (handled.has(job.id)) return; // a relay re-delivered it
   handled.add(job.id);
 
+  // NIP-90: a job with "p" tags is meant only for those providers. Answer
+  // untargeted jobs and jobs addressed to us; ignore jobs for other DVMs
+  // (otherwise their requesters get an invoice they never asked for). Seen
+  // 2026-10-17: ~250 kind-5302 jobs/month, all addressed to two other DVMs.
+  const targets = job.tags.flatMap((t) => (t[0] === "p" && t[1] ? [t[1]] : []));
+  if (targets.length > 0 && !targets.includes(d.pubkey)) {
+    d.audit.record("ignored_other_provider", { job_id: job.id, from: job.pubkey, targets: targets.map((t) => t.slice(0, 12)) });
+    return;
+  }
+
   const query = extractQuery(job);
   d.audit.record("job_received", { job_id: job.id, from: job.pubkey, has_query: Boolean(query) });
   if (!query) {

@@ -11,6 +11,7 @@ export type AuditEvent =
   | "result_published"
   | "payment_timeout"
   | "relay_resubscribe"
+  | "ignored_other_provider"
   | "error";
 
 export class AuditLog {

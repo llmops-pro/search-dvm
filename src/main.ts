@@ -9,7 +9,7 @@ import { announce, handleJob, JOB_REQUEST } from "./dvm.js";
 import { PaymentGate } from "./payment.js";
 import { superviseSubscriptions } from "./supervisor.js";
 
-const VERSION = "0.2.1";
+const VERSION = "0.2.2";
 const REANNOUNCE_MS = 6 * 60 * 60 * 1000;
 
 function secretKeyBytes(raw: string): Uint8Array {
